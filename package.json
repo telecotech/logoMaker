@@ -1,0 +1,24 @@
+{
+  "name": "logomaker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/telecotech/logoMaker.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/telecotech/logoMaker/issues"
+  },
+  "homepage": "https://github.com/telecotech/logoMaker#readme",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "inquirer": "^9.1.5",
+    "svg-builder": "^2.0.0"
+  }
+}
