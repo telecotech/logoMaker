@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-import SvgBuilder from 'SvgBuilder';
+import SvgBuilder from 'svg-builder';
 import fs from 'fs';
 
 
@@ -31,7 +31,7 @@ const questions = [
 ];
 
 inquirer.prompt(questions).then((answers) => {
-  const Svgbuilder = new SvgBuilder();
+  // const Svgbuilder = new SvgBuilder();
   switch (answers.shape) {
     case 'circle':
       svg.circle(100, 100, 50)
