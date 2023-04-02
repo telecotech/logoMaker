@@ -26,37 +26,35 @@ const questions = [
   },
 ];
 
+function generateSvg(answers) {
+  const { text, textColor, shape, shapeColor } = answers;
 
-  
+  const shapeSvgMap = {
+    circle: `<circle cx="50" cy="50" r="45" fill="${shapeColor}" />`,
+    triangle: `<polygon points="50,5 95,95 5,95" fill="${shapeColor}" />`,
+    square: `<rect width="100" height="100" fill="${shapeColor}" />`
+  };
+  const shapeSvg = shapeSvgMap[shape] || shapeSvgMap.square;
 
-    
-    // Create the SVG string template
-    function generateSvg(answers) {
-      const { text, textColor, shape, shapeColor } = answers;
-      
-      // Create the SVG string template
-      const svgString = `
-        <svg width="100" height="100">
-        <shape="${shape}" />
-        < fill="${shapeColor}" />
-          <text x="50" y="50" fill="${textColor}" text-anchor="middle" font-size="40">${text}</text>
-        </svg>
-      `;
-      
-      return svgString;
-    }
-    
+  const svgString = `
+    <svg width="100" height="100">
+      ${shapeSvg}
+      <text x="50" y="50" fill="${textColor}" text-anchor="middle" dominant-baseline="central" font-size="40">${text}</text>
+    </svg>
+  `;
+  return svgString;
+}
 
-
-function writeToFile(fileName, data) {
-  fs.writeFile(fileName, data, err => {
+function writeToFile(filename, data) {
+  fs.writeFile(filename, data, (err) => {
     if (err) {
       console.error(err);
     } else {
-      console.log(`Successfully wrote ${fileName}!`);
+      console.log(`File ${filename} written successfully.`);
     }
   });
 }
+
 
 function init() {
   inquirer.prompt(questions)
@@ -74,3 +72,4 @@ function init() {
 }
 
 init();
+            
