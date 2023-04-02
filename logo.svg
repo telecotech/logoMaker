@@ -1,6 +1,7 @@
 
-    <svg width="100" height="100">
-      <rect width="100" height="100" fill="undefined" />
-      <text x="50" y="50" fill="red" text-anchor="middle" font-size="40">CLM</text>
-    </svg>
-  
+        <svg width="100" height="100">
+        <shape="circle" />
+        < fill="yellow" />
+          <text x="50" y="50" fill="red" text-anchor="middle" font-size="40">CLM</text>
+        </svg>
+      
