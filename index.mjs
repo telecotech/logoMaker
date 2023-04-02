@@ -1,8 +1,9 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-import SvgBuilder from 'svg-builder';
-import fs from 'fs';
+import { JSDOM } from 'jsdom';
+import { SvgBuilder } from 'svg-builder';
 
+import fs from 'fs';
 
 const questions = [
   {
@@ -27,34 +28,26 @@ const questions = [
     name: 'shapecolor',
     message: 'Enter the shape color (keyword or hex):',
   },
- 
 ];
 
 inquirer.prompt(questions).then((answers) => {
-  // const Svgbuilder = new SvgBuilder();
-  switch (answers.shape) {
-    case 'circle':
-      svg.circle(100, 100, 50)
-        .attr('fill', answers.shapeColor)
-        .attr('stroke', 'none');
-      break;
-    case 'triangle':
-      svg.path('M 50 0 L 100 100 L 0 100 Z')
-        .attr('fill', answers.shapeColor)
-        .attr('stroke', 'none');
-      break;
-    case 'square':
-      svg.rect(50, 50, 100, 100)
-        .attr('fill', answers.shapeColor)
-        .attr('stroke', 'none');
-      break;
+  const { window } = new JSDOM();
+  const svg = SvgBuilder(window.document.createElement('div'));
+
+  const selectedShapeMethod = shapeMethods[answers.shape];
+
+  if (selectedShapeMethod) {
+    selectedShapeMethod(svg)
+      .attr('fill', answers.shapeColor)
+      .attr('stroke', 'none');
   }
+
   svg.text(50, 130, answers.text)
     .attr('font-size', '60')
     .attr('fill', answers.textColor)
     .attr('text-anchor', 'middle');
 
-  const svgString = svg.toString();
+  const svgString = svg.svg();
   const filename = 'logo.svg';
   fs.writeFileSync(filename, svgString);
   console.log(chalk.green(`Generated ${filename}`));
