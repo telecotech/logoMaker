@@ -46,3 +46,7 @@ This project is licensed under the MIT License. See the LICENSE file for more in
 ## Acknowledgments
 
 Logo Maker was inspired by svg-term-cli and the Noun Project.
+
+
+
+[Logo Maker.webm](https://user-images.githubusercontent.com/122703408/229622664-0a0181a6-43f1-4ed0-bf30-eac1709f0e5e.webm)
